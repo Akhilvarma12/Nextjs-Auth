@@ -19,7 +19,6 @@ export async function POST(request:NextRequest){
         )
         }
         console.log("user exists")
-
         const validPassword=await bcrypt.compare(password,user.password)
         if(!validPassword){
             return NextResponse.json(
@@ -42,6 +41,7 @@ export async function POST(request:NextRequest){
         response.cookies.set("token",token,{
             httpOnly:true
         })
+        return response;
 
     } catch (error:any) {
         return NextResponse.json(
